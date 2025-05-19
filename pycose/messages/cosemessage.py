@@ -10,6 +10,7 @@ from pycose.keys.okp import OKPKey
 from pycose.keys.rsa import RSAKey
 from pycose.keys.symmetric import SymmetricKey
 from pycose.messages.cosebase import CoseBase
+from pycose.headers import Critical
 
 CBOR = bytes
 
@@ -139,6 +140,8 @@ class CoseMessage(CoseBase, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def encode(self, message: list, tag: bool = True, *args, **kwargs) -> CBOR:
+        if Critical in self.uhdr:
+            raise ValueError("The library does not ensure if the critical header in the protected header")
         if tag:
             message = cbor2.dumps(cbor2.CBORTag(self.cbor_tag, message), default=self._custom_cbor_encoder)
         else:
