@@ -191,7 +191,6 @@ def content_type_is_uint_or_tstr(value):
             raise ValueError("CONTENT TYPE string must not have leading or trailing whitespace")
         
         parts = value.split('/')
-        print(parts)
         if len(parts) != 2 or not parts[0] or not parts[1]:
             raise ValueError("CONTENT TYPE string must follow 'type/subtype' format")
         
