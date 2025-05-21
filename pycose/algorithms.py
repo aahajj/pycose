@@ -314,11 +314,29 @@ class _AesGcm(_EncAlg, ABC):
 
     @classmethod
     def encrypt(cls, key: 'SK', nonce: bytes, data: bytes, aad: bytes) -> bytes:
+        
+        key_length = cls.get_key_length()
+        
+        if key_length != cls.get_key_length():
+            raise ValueError("Key has the wrong length")
+        
+        if len(nonce) != cls.get_nonce_length():
+            raise ValueError("Nonce has the wrong length")
+        
         cipher = AESGCM(key=key.k)
         return cipher.encrypt(nonce=nonce, data=data, associated_data=aad)
 
     @classmethod
     def decrypt(cls, key: 'SK', nonce: bytes, ciphertext: bytes, aad: bytes) -> bytes:
+        
+        key_length = cls.get_key_length()
+        
+        if key_length != cls.get_key_length():
+            raise ValueError("Key has the wrong length")
+        
+        if len(nonce) != cls.get_nonce_length():
+            raise ValueError("Nonce has the wrong length")
+        
         cipher = AESGCM(key=key.k)
         return cipher.decrypt(nonce=nonce, data=ciphertext, associated_data=aad)
 
@@ -332,11 +350,29 @@ class _AesCcm(_EncAlg, ABC):
 
     @classmethod
     def encrypt(cls, key: 'SK', nonce: bytes, data: bytes, aad: bytes) -> bytes:
+        
+        key_length = cls.get_key_length()
+        
+        if key_length != cls.get_key_length():
+            raise ValueError("Key has the wrong length")
+        
+        if len(nonce) != cls.get_nonce_length():
+            raise ValueError("Nonce has the wrong length")
+                
         cipher = AESCCM(key.k, tag_length=cls.get_tag_length())
         return cipher.encrypt(nonce, data=data, associated_data=aad)
 
     @classmethod
     def decrypt(cls, key: 'SK', nonce: bytes, ciphertext: bytes, aad: bytes) -> bytes:
+        
+        key_length = cls.get_key_length()
+        
+        if key_length != cls.get_key_length():
+            raise ValueError("Key has the wrong length")
+        
+        if len(nonce) != cls.get_nonce_length():
+            raise ValueError("Nonce has the wrong length")
+        
         cipher = AESCCM(key=key.k, tag_length=cls.get_tag_length())
         return cipher.decrypt(nonce, data=ciphertext, associated_data=aad)
 
@@ -1154,6 +1190,10 @@ class A128GCM(_AesGcm):
     @classmethod
     def get_key_length(cls) -> int:
         return 16
+    
+    @classmethod
+    def get_nonce_length(cls) -> int:
+        return 96
 
 
 @CoseAlgorithm.register_attribute()
@@ -1173,6 +1213,11 @@ class A192GCM(_AesGcm):
     @classmethod
     def get_key_length(cls) -> int:
         return 24
+    
+    @classmethod
+    def get_nonce_length(cls) -> int:
+        return 96
+
 
 
 @CoseAlgorithm.register_attribute()
@@ -1192,6 +1237,10 @@ class A256GCM(_AesGcm):
     @classmethod
     def get_key_length(cls) -> int:
         return 32
+    
+    @classmethod
+    def get_nonce_length(cls) -> int:
+        return 96
 
 
 @CoseAlgorithm.register_attribute()
@@ -1262,6 +1311,10 @@ class AESCCM1664128(_AesCcm):
     @classmethod
     def get_key_length(cls) -> int:
         return 16
+    
+    @classmethod
+    def get_nonce_length(cls) -> int:
+        return 13
 
 
 @CoseAlgorithm.register_attribute()
@@ -1276,6 +1329,10 @@ class AESCCM1664256(_AesCcm):
     @classmethod
     def get_key_length(cls) -> int:
         return 32
+    
+    @classmethod
+    def get_nonce_length(cls) -> int:
+        return 13
 
 
 @CoseAlgorithm.register_attribute()
@@ -1290,6 +1347,10 @@ class AESCCM6464128(_AesCcm):
     @classmethod
     def get_key_length(cls) -> int:
         return 16
+    
+    @classmethod
+    def get_nonce_length(cls) -> int:
+        return 7
 
 
 @CoseAlgorithm.register_attribute()
@@ -1304,6 +1365,10 @@ class AESCCM6464256(_AesCcm):
     @classmethod
     def get_tag_length(cls) -> int:
         return 8
+    
+    @classmethod
+    def get_nonce_length(cls) -> int:
+        return 7
 
 
 @CoseAlgorithm.register_attribute()
