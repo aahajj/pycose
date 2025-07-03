@@ -10,6 +10,7 @@ COSE_Encrypt0 = [
 from typing import Optional, TYPE_CHECKING
 
 from pycose import utils
+from pycose.headers import Algorithm
 from pycose.messages import enccommon, cosemessage
 
 if TYPE_CHECKING:
@@ -59,6 +60,9 @@ class Enc0Message(enccommon.EncCommon):
 
         :return: Returns a CBOR-encoded COSE Encrypt0 message.
         """
+
+        if Algorithm in self.uhdr and self.get_attr(Algorithm).has_authentication():
+            raise ValueError("Algorithems that support authentication must be placed in the protected header.")
 
         if encrypt:
             message = [self.phdr_encoded, self.uhdr_encoded, self.encrypt()]

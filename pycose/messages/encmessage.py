@@ -2,6 +2,7 @@ import os
 from typing import List, Optional, TYPE_CHECKING
 
 from pycose import utils, headers
+from pycose.headers import Algorithm
 from pycose.exceptions import CoseException
 from pycose.keys.keyops import EncryptOp
 from pycose.keys.keyparam import KpAlg, KpKeyOps
@@ -59,6 +60,9 @@ class EncMessage(enccommon.EncCommon):
 
     def encode(self, tag: bool = True, encrypt: bool = True, *args, **kwargs) -> CBOR:
         """ Encodes and protects the COSE_Encrypt message """
+
+        if Algorithm in self.uhdr and self.get_attr(headers.Algorithm).has_authentication():
+            raise ValueError("Algorithems that support authentication must be placed in the protected header.")
 
         # encode/wrap_cek the base fields
         if encrypt:
