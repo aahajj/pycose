@@ -64,6 +64,10 @@ class EncMessage(enccommon.EncCommon):
         if Algorithm in self.uhdr and self.get_attr(headers.Algorithm).has_authentication():
             raise ValueError("Algorithems that support authentication must be placed in the protected header.")
 
+        if not self.get_attr(Algorithm).has_authentication() and len(self.phdr) > 0:
+            raise ValueError("Protected header must be empty when the algorithm does not support authentication.")
+
+
         # encode/wrap_cek the base fields
         if encrypt:
             message = [self.phdr_encoded, self.uhdr_encoded, self.encrypt()]
