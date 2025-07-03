@@ -494,6 +494,10 @@ class RsaesOaepSha512(_RsaOaep):
     def get_hash_func(cls):
         return SHA512
 
+    @classmethod
+    def has_authentication(cls) -> bool:
+        return False
+
 
 @CoseAlgorithm.register_attribute()
 class RsaesOaepSha256(_RsaOaep):
@@ -504,6 +508,9 @@ class RsaesOaepSha256(_RsaOaep):
     def get_hash_func(cls):
         return SHA256
 
+    @classmethod
+    def has_authentication(cls) -> bool:
+        return False
 
 @CoseAlgorithm.register_attribute()
 class RsaesOaepSha1(_RsaOaep):
@@ -513,6 +520,10 @@ class RsaesOaepSha1(_RsaOaep):
     @classmethod
     def get_hash_func(cls):
         return SHA1
+
+    @classmethod
+    def has_authentication(cls) -> bool:
+        return False
 
 
 @CoseAlgorithm.register_attribute()
