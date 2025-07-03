@@ -984,7 +984,7 @@ class DirectHKDFAES256(CoseAlgorithm):
     fullname = "DIRECT_HKDF_AES_256"
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1001,7 +1001,7 @@ class DirectHKDFAES128(CoseAlgorithm):
     fullname = "DIRECT_HKDF_AES_128"
     
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1113,7 +1113,7 @@ class Direct(CoseAlgorithm):
     fullname = "DIRECT"
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return False
 
 @CoseAlgorithm.register_attribute()
@@ -1135,7 +1135,7 @@ class A256KW(_AesKw):
         return 32
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return False
 
 @CoseAlgorithm.register_attribute()
@@ -1157,7 +1157,7 @@ class A192KW(_AesKw):
         return 24
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return False
 
 @CoseAlgorithm.register_attribute()
@@ -1179,7 +1179,7 @@ class A128KW(_AesKw):
         return 16
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return False
 
 @CoseAlgorithm.register_attribute()
@@ -1205,7 +1205,7 @@ class A128GCM(_AesGcm):
         return 12
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1231,7 +1231,7 @@ class A192GCM(_AesGcm):
         return 12
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1257,7 +1257,7 @@ class A256GCM(_AesGcm):
         return 12
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1334,7 +1334,7 @@ class AESCCM1664128(_AesCcm):
         return 13
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1355,7 +1355,7 @@ class AESCCM1664256(_AesCcm):
         return 13
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 
@@ -1377,7 +1377,7 @@ class AESCCM6464128(_AesCcm):
         return 7
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 
@@ -1399,7 +1399,7 @@ class AESCCM6464256(_AesCcm):
         return 7
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1416,7 +1416,7 @@ class AESMAC12864(_AesMac):
         return 16
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1433,7 +1433,7 @@ class AESMAC25664(_AesMac):
         return 32
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1450,7 +1450,7 @@ class AESMAC128128(_AesMac):
         return 16
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1467,7 +1467,7 @@ class AESMAC256128(_AesMac):
         return 32
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1485,7 +1485,7 @@ class AESCCM16128128(_AesCcm):
         return 16
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1502,7 +1502,7 @@ class AESCCM16128256(_AesCcm):
         return 32
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1519,7 +1519,7 @@ class AESCCM64128128(_AesCcm):
         return 16
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 @CoseAlgorithm.register_attribute()
@@ -1536,7 +1536,7 @@ class AESCCM64128256(_AesCcm):
         return 32
 
     @classmethod
-    def has_authentication() -> bool:
+    def has_authentication(cls) -> bool:
         return True
 
 # set parser
